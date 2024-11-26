@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ABP_ANDROID</string>
+    <string name="hello_blank_fragment">Hola, Fragmento de Administrador</string>
+
+</resources>
