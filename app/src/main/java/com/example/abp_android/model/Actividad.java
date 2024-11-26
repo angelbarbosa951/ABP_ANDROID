@@ -10,7 +10,7 @@ public class Actividad implements Serializable {
     private int precio;
     private String fecha;
     private String imagen;
-    private boolean isExpanded = false;  // Nuevo atributo para controlar la expansión
+    private boolean isExpanded;  // Nuevo atributo para controlar la expansión
 
     public Actividad(int id, String nombre, String descripcion, int cupo, int precio, String fecha, String imagen) {
         this.id = id;

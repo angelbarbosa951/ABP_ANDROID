@@ -1,14 +1,22 @@
 package com.example.abp_android.fragments;
 
 import android.os.Bundle;
-
+import androidx.lifecycle.ViewModelProvider;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.abp_android.R;
+import com.example.abp_android.adapters.ReservasAdapter;
+import com.example.abp_android.model.Actividad;
+import com.example.abp_android.viewModel.ReservasViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -57,11 +65,29 @@ public class ReservasFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private List<Actividad> reservasActividadArray = new ArrayList<>();
+    RecyclerView recyclerViewReservas;
+
+    public ReservasFragment(List<Actividad> reservas) {
+        this.reservasActividadArray = reservas;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reservas, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_reservas, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReservas);
+        ReservasViewModel reservasViewModel = new ViewModelProvider(requireActivity()).get(ReservasViewModel.class);
+
+        ReservasAdapter reservasAdapter = new ReservasAdapter(getContext(), reservasViewModel);
+        recyclerView.setAdapter(reservasAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Observar los cambios en la lista de reservas
+        reservasViewModel.getReservasLiveData().observe(getViewLifecycleOwner(), updatedReservas -> {
+            reservasAdapter.notifyDataSetChanged();
+        });
+
+        return view;
     }
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.abp_android.R;
 import com.example.abp_android.adapters.MyAdapter;
 import com.example.abp_android.model.Actividad;
+import com.example.abp_android.viewModel.ReservasViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -69,34 +70,28 @@ public class ActividadFragment extends Fragment {
         }
     }
 
+    private List<Actividad> reservasActividadArray = new ArrayList<>();
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_actividad, container, false);
 
-        // Inicializa el RecyclerView
-        recyclerView = view.findViewById(R.id.recyclerViewActividad);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewActividad);
+        ReservasViewModel reservasViewModel = new ViewModelProvider(requireActivity()).get(ReservasViewModel.class);
 
-        // Llena los datos
-        //data();
-
-        // Configura el adapter
-        MyAdapter myAdapter = new MyAdapter(data(), getContext());
+        MyAdapter myAdapter = new MyAdapter(data(), getContext(), reservasViewModel);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
 
-
-    private List<Actividad> data(){
-        if( actividades.size() == 0 ){
+    private List<Actividad> data() {
+        if (actividades.size() == 0) {
             actividades.add(new Actividad(1, "Ciclismo", "Ciclismo de montaña en coll de l'Alba", 10, 10, "2024/12/10", "act1"));
             actividades.add(new Actividad(2, "Escalada", "Escalada en multilargos a Horta de Sanjuan", 15, 20, "2025/02/19", "act2"));
             actividades.add(new Actividad(3, "Tennis", "Torneo amateur de Tennis", 8, 15, "2026/09/20", "act3"));
         }
-
         return actividades;
     }
 }

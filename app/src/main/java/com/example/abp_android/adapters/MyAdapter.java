@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.abp_android.model.Actividad;
 import com.example.abp_android.R;
+import com.example.abp_android.viewModel.ReservasViewModel;
 
 import java.util.List;
 
@@ -21,10 +23,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private List<Actividad> actividades;
     private Context context;
+    private List<Actividad> reservasActividadArray;
+    private ReservasViewModel reservasViewModel;
 
-    public MyAdapter(List<Actividad> actividades, Context context) {
+    public MyAdapter(List<Actividad> actividades, Context context, ReservasViewModel reservasViewModel) {
         this.actividades = actividades;
         this.context = context;
+        this.reservasViewModel = reservasViewModel;
     }
 
     @NonNull
@@ -53,15 +58,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.textPrecio.setText("Precio: $" + actividad.getPrecio());
         holder.textDescripcion.setText("Descripción: " + actividad.getDescripcion());
 
-        // Configurar el botón de reservar
-        holder.btnReservar.setOnClickListener(v -> {
-            // Lógica para reservar la actividad (por ahora no hace nada)
+        // Agregar un clic para alternar el estado de expansión
+        holder.itemView.setOnClickListener(v -> {
+            // Alternar el estado de la actividad expandida
+            actividad.setExpanded(!actividad.isExpanded());
+            notifyItemChanged(position);  // Actualizar solo el ítem afectado
+
+            // Mostrar un mensaje para verificar el cambio de estado
+            System.out.println("Estado expandido de " + actividad.getNombre() + ": " + actividad.isExpanded());
         });
 
-        // Expansión o contracción al hacer clic
-        holder.itemView.setOnClickListener(v -> {
-            actividad.setExpanded(!actividad.isExpanded());
-            notifyItemChanged(position);  // Notificar que se actualizó el estado de expansión
+        // Configurar el botón de reservar
+        holder.btnReservar.setOnClickListener(v -> {
+            reservasViewModel.agregarReserva(actividad); // Agrega la actividad al ViewModel
+
+            // Imprimir en consola para verificar
+            System.out.println("Reservada actividad: " + actividad.getNombre());
+
+            // Mostrar un Toast de confirmación
+            Toast.makeText(context, actividad.getNombre() + " reservada", Toast.LENGTH_SHORT).show();
         });
     }
 
