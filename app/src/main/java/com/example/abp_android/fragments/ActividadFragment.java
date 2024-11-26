@@ -16,6 +16,7 @@ import com.example.abp_android.adapters.MyAdapter;
 import com.example.abp_android.model.Actividad;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -78,10 +79,10 @@ public class ActividadFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewActividad);
 
         // Llena los datos
-        data();
+        //data();
 
         // Configura el adapter
-        MyAdapter myAdapter = new MyAdapter(actividades, getContext());
+        MyAdapter myAdapter = new MyAdapter(data(), getContext());
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -89,9 +90,13 @@ public class ActividadFragment extends Fragment {
     }
 
 
-    private void data(){
-        actividades.add(new Actividad(1, "Ciclismo", "Ciclismo de montaña en coll de l'Alba", 10, 10, "2024/12/10", "act1"));
-        actividades.add(new Actividad(2, "Escalada", "Escalada en multilargos a Horta de Sanjuan", 15, 20, "2025/02/19", "act2"));
-        actividades.add(new Actividad(3, "Tennis", "Torneo amateur de Tennis", 8, 15, "2026/09/20", "act3"));
+    private List<Actividad> data(){
+        if( actividades.size() == 0 ){
+            actividades.add(new Actividad(1, "Ciclismo", "Ciclismo de montaña en coll de l'Alba", 10, 10, "2024/12/10", "act1"));
+            actividades.add(new Actividad(2, "Escalada", "Escalada en multilargos a Horta de Sanjuan", 15, 20, "2025/02/19", "act2"));
+            actividades.add(new Actividad(3, "Tennis", "Torneo amateur de Tennis", 8, 15, "2026/09/20", "act3"));
+        }
+
+        return actividades;
     }
 }

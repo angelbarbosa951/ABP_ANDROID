@@ -60,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity {
         reservaFragment = new ReservasFragment();
 
         main_nav.setItemBackgroundResource(R.color.home);
-        setFragment(habitacionFragment);
+        setFragment(activityFragment);
         main_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
