@@ -80,6 +80,11 @@ public class NavigationActivity extends AppCompatActivity {
                     Toast.makeText(NavigationActivity.this,"Reserva",Toast.LENGTH_SHORT).show();
                     setFragment(reservaFragment);
                     return true;
+                }else  if(item.getItemId()==R.id.R_Habitacion){
+                    main_nav.setItemBackgroundResource(R.color.color_red);
+                    Toast.makeText(NavigationActivity.this,"Reserva_Habitacion",Toast.LENGTH_SHORT).show();
+                    setFragment(reservaFragment);
+                    return true;
                 }else{
                     return false;
                 }
@@ -116,6 +121,7 @@ public class NavigationActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.logout) {
             // Acción para el logout (puedes añadir lógica específica aquí)
             Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+            finish();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

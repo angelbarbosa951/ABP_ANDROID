@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Imagen de la habitación -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Imagen de habitación"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Descripción de la habitación -->
+    <TextView
+        android:id="@+id/tv_habitacio_descripcio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Habitació Deluxe" />
+
+    <!-- Precio de la habitación -->
+    <TextView
+        android:id="@+id/tv_habitacio_preu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Preu: 100€/nit" />
+
+    <!-- Botón de reserva -->
+    <Button
+        android:id="@+id/btn_reservar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Reservar"
+        android:backgroundTint="@color/black"
+        android:textColor="@android:color/white" />
+</LinearLayout>

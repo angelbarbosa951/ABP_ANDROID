@@ -9,7 +9,7 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private Rol rol;
+    private String rol;
     private Estado estado;
     private String fecha_registro;
 
@@ -23,7 +23,17 @@ public class User {
         this.estado = estado;
         this.fecha_registro = fecha_registro;
     }
-
+    public User(String username, String password, String email, String rol) {
+        this.username = username;
+        this.password = password;
+        this.email=email;
+        this.rol = rol;
+    }
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email=email;
+    }
 
 
     public int getId() {
@@ -58,11 +68,11 @@ public class User {
         this.password = password;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
@@ -81,4 +91,5 @@ public class User {
     public void setFecha_registro(String fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
+
 }

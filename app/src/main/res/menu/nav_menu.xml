@@ -11,5 +11,9 @@
     <item
         android:id="@+id/Reserva"
         android:icon="@drawable/ic_reserva"
-        android:title="Reserva" />
+        android:title="R_Actividad" />
+    <item
+        android:id="@+id/R_Habitacion"
+        android:icon="@drawable/ic_reserva"
+        android:title="R_Habitacion" />
 </menu>

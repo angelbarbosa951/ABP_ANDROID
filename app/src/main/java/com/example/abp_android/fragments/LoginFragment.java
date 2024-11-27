@@ -1,6 +1,5 @@
 package com.example.abp_android.fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.abp_android.MainActivity;
 import com.example.abp_android.NavigationActivity;
 import com.example.abp_android.R;
-import com.example.abp_android.MainActivity;
+import com.example.abp_android.utils.Rol;
 
+import com.example.abp_android.adapters.LoginAdaptar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,13 +75,30 @@ public class LoginFragment extends Fragment {
 
         Button loginButton = view.findViewById(R.id.buttonLogin);
         TextView RegisterText = view.findViewById(R.id.textView5);
+        EditText inputEmail = view.findViewById(R.id.inputEmail);
+        EditText inputPassword = view.findViewById(R.id.inputPassword);
 
-
+        LoginAdaptar loginHandler = new LoginAdaptar();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), NavigationActivity.class);
-                startActivity(intent);
+                String username = inputEmail.getText().toString().trim();
+                String password = inputPassword.getText().toString().trim();
+
+                if(username.isEmpty()&&password.isEmpty()){
+                    Toast.makeText(getActivity(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+                }else{
+                    String rol = loginHandler.autenticar(username,password);
+                    if(rol!=null){
+                        Toast.makeText(getActivity(), "Inicio de sesión exitoso. Rol: " + rol, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(requireContext(), NavigationActivity.class);
+                        startActivity(intent);
+
+                    }else{
+                        Toast.makeText(getActivity(), "Usuario no existe", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
         });
         RegisterText.setOnClickListener(v -> {

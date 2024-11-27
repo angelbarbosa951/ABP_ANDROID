@@ -76,11 +76,11 @@ public class PerfilFragment extends Fragment {
     private void loadUserData() {
         // Crear un usuario ficticio
         User user = new User();
-        user.setUsername("johndoe");
-        user.setRol(Rol.admin);
+        user.setUsername("Mandeep Singh");
+        user.setRol("admin");
 
         // Mostrar los datos en las vistas
         tvUsername.setText("Username: " + user.getUsername());
-        tvRole.setText("Role: " + user.getRol().name());
+        tvRole.setText("Role: " + user.getRol());
     }
 }

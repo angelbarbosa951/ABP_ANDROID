@@ -48,8 +48,7 @@
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint"
-                android:text="Email"
+                android:hint="Email"
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,8 +71,7 @@
                 android:id="@+id/inputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint"
-                android:text="Password"
+                android:hint="password"
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +94,8 @@
             android:padding="15dp"
             android:paddingStart="5dp"
             android:text="¿No tienes cuenta? Registrate"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/home" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
