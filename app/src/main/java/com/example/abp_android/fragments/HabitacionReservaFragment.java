@@ -70,5 +70,6 @@ public class HabitacionReservaFragment extends Fragment {
 
         ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, ReservaManagerHabitacion.getInstance().getReserves());
         reservesListView.setAdapter(adapter);
-        return view;    }
+        return view;
+    }
 }

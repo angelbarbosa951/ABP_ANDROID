@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.abp_android.fragments.ActividadFragment;
 import com.example.abp_android.fragments.HabitacionFragment;
+import com.example.abp_android.fragments.HabitacionReservaFragment;
 import com.example.abp_android.fragments.PerfilFragment;
 import com.example.abp_android.fragments.ReservasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +34,7 @@ public class NavigationActivity extends AppCompatActivity {
     private ActividadFragment activityFragment;
     private HabitacionFragment habitacionFragment;
     private ReservasFragment reservaFragment;
+    private HabitacionReservaFragment habitacionReservaFragment;
 
     private Toolbar toolbar;
 
@@ -59,6 +61,7 @@ public class NavigationActivity extends AppCompatActivity {
         activityFragment = new ActividadFragment();
         habitacionFragment = new HabitacionFragment();
         reservaFragment = new ReservasFragment();
+        habitacionReservaFragment = new HabitacionReservaFragment();
 
         main_nav.setItemBackgroundResource(R.color.home);
         setFragment(activityFragment);
@@ -83,7 +86,7 @@ public class NavigationActivity extends AppCompatActivity {
                 }else  if(item.getItemId()==R.id.R_Habitacion){
                     main_nav.setItemBackgroundResource(R.color.color_red);
                     Toast.makeText(NavigationActivity.this,"Reserva_Habitacion",Toast.LENGTH_SHORT).show();
-                    setFragment(reservaFragment);
+                    setFragment(habitacionReservaFragment);
                     return true;
                 }else{
                     return false;

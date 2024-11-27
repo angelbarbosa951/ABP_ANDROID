@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.abp_android.adapters.ReservaManagerHabitacion;
 import com.example.abp_android.R;
+import com.example.abp_android.fragments.HabitacionReservaFragment;
 import com.example.abp_android.model.Habitacion;
 import com.example.abp_android.model.Reserva_Habitacion;
 import com.squareup.picasso.Picasso;
@@ -26,12 +26,13 @@ import java.util.List;
 public class HabitacionAdaptar extends RecyclerView.Adapter<HabitacionAdaptar.HabitacionViewHolder> {
     private final List<Habitacion> habitacions;
     private final Context context;
+    private final FragmentManager fragmentManager;
 
-    public HabitacionAdaptar(Context context, List<Habitacion> habitacions) {
+    public HabitacionAdaptar(Context context, List<Habitacion> habitacions, FragmentManager fragmentManager) {
         this.context = context;
         this.habitacions = habitacions;
+        this.fragmentManager = fragmentManager;
     }
-
 
     @NonNull
     @Override
@@ -43,16 +44,19 @@ public class HabitacionAdaptar extends RecyclerView.Adapter<HabitacionAdaptar.Ha
     @Override
     public void onBindViewHolder(@NonNull HabitacionViewHolder holder, int position) {
         Habitacion habitacion = habitacions.get(position);
+
+        // Carga la imagen usando Picasso
         Picasso.get()
-                .load(habitacions.get(position).getImageUrl())  // URL de la imagen
+                .load(habitacion.getImageUrl()) // URL de la imagen
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
 
+        // Configura los datos de la habitación
         holder.descripcioTextView.setText(habitacion.getDescripcio());
         holder.preuTextView.setText("Preu: " + habitacion.getPreuPerNit() + "€/nit");
 
-
+        // Configura el botón de reserva
         holder.reservarButton.setOnClickListener(v -> mostrarDatePicker(habitacion));
     }
 
@@ -60,24 +64,35 @@ public class HabitacionAdaptar extends RecyclerView.Adapter<HabitacionAdaptar.Ha
     public int getItemCount() {
         return habitacions.size();
     }
+
     private void mostrarDatePicker(Habitacion habitacion) {
         Calendar calendar = Calendar.getInstance();
         int any = calendar.get(Calendar.YEAR);
         int mes = calendar.get(Calendar.MONTH);
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
+        // Selección de fecha de entrada
         DatePickerDialog entradaDatePicker = new DatePickerDialog(context,
                 (view, anySeleccionat, mesSeleccionat, diaSeleccionat) -> {
                     String dataEntrada = diaSeleccionat + "/" + (mesSeleccionat + 1) + "/" + anySeleccionat;
 
+                    // Selección de fecha de salida
                     DatePickerDialog sortidaDatePicker = new DatePickerDialog(context,
                             (view1, anySortida, mesSortida, diaSortida) -> {
                                 String dataSortida = diaSortida + "/" + (mesSortida + 1) + "/" + anySortida;
 
+                                // Guardar reserva
                                 Reserva_Habitacion reserva = new Reserva_Habitacion(habitacion, dataEntrada, dataSortida);
                                 ReservaManagerHabitacion.getInstance().afegirReserva(reserva);
 
                                 Toast.makeText(context, "Reserva guardada!", Toast.LENGTH_SHORT).show();
+
+                                // Navegar al fragmento HabitacionReservaFragment
+                                HabitacionReservaFragment fragment = HabitacionReservaFragment.newInstance(null, null);
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.main_frame, fragment)
+                                        .addToBackStack(null) // Agrega al back stack para permitir la navegación hacia atrás
+                                        .commit();
 
                             }, any, mes, dia);
                     sortidaDatePicker.setTitle("Selecciona la data de sortida");
