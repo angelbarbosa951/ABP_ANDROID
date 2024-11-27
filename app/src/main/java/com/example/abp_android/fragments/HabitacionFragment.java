@@ -46,7 +46,7 @@ public class HabitacionFragment extends Fragment {
         List<Habitacion> habitacionList = new ArrayList<>();
         habitacionList.add(new Habitacion("Habitació Deluxe", 100, "https://acortar.link/Q3Dm0h"));
         habitacionList.add(new Habitacion("Habitació Suite", 200, "https://acortar.link/tDtN6a"));
-        habitacionList.add(new Habitacion("Habitació Estàndard", 75, "https://acortar.link/3Xj0nm"));
+        habitacionList.add(new Habitacion("Habitació Estàndard", 75, "https://n9.cl/kxtt8"));
         habitacionList.add(new Habitacion("Suite Presidencial", 300.0, "https://acortar.link/qt0cae"));
         return habitacionList;
     }

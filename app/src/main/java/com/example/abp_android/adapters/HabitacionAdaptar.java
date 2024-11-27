@@ -82,17 +82,13 @@ public class HabitacionAdaptar extends RecyclerView.Adapter<HabitacionAdaptar.Ha
                                 String dataSortida = diaSortida + "/" + (mesSortida + 1) + "/" + anySortida;
 
                                 // Guardar reserva
-                                Reserva_Habitacion reserva = new Reserva_Habitacion(habitacion, dataEntrada, dataSortida);
-                                ReservaManagerHabitacion.getInstance().afegirReserva(reserva);
-
-                                Toast.makeText(context, "Reserva guardada!", Toast.LENGTH_SHORT).show();
-
-                                // Navegar al fragmento HabitacionReservaFragment
-                                HabitacionReservaFragment fragment = HabitacionReservaFragment.newInstance(null, null);
-                                fragmentManager.beginTransaction()
-                                        .replace(R.id.main_frame, fragment)
-                                        .addToBackStack(null) // Agrega al back stack para permitir la navegación hacia atrás
-                                        .commit();
+                                if(diaSeleccionat<=diaSortida&& mesSeleccionat<=mesSortida) {
+                                    Reserva_Habitacion reserva = new Reserva_Habitacion(habitacion, dataEntrada, dataSortida);
+                                    ReservaManagerHabitacion.getInstance().afegirReserva(reserva);
+                                    Toast.makeText(context, "Reserva guardada!", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(context, "Fecha no valida!", Toast.LENGTH_SHORT).show();
+                                }
 
                             }, any, mes, dia);
                     sortidaDatePicker.setTitle("Selecciona la data de sortida");
