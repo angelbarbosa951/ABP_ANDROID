@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.abp_android.fragments.ActividadFragment;
 import com.example.abp_android.fragments.HabitacionFragment;
+import com.example.abp_android.fragments.PerfilFragment;
 import com.example.abp_android.fragments.ReservasFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -102,12 +103,21 @@ public class NavigationActivity extends AppCompatActivity {
 
     }
 
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.profile){
-            Toast.makeText(this,"profile",Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.profile) {
+            // Reemplazar el contenido actual con el PerfilFragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main_frame, new PerfilFragment());
+            fragmentTransaction.addToBackStack(null); // Permitir volver al fragmento anterior
+            fragmentTransaction.commit();
+
             return true;
-        }else {
+        } else if (item.getItemId() == R.id.logout) {
+            // Acción para el logout (puedes añadir lógica específica aquí)
+            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
