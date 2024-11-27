@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:background="@drawable/card_border"
+
     app:cardCornerRadius="12dp"
     app:cardElevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DB7F68"
+        android:background="#FFFF"
         android:padding="16dp">
 
         <!-- Nombre y Fecha -->

@@ -5,4 +5,5 @@
     <color name="home">#03A9F4</color>
     <color name="profile">#FFC107</color>
     <color name="settings">#4CAF50</color>
+    <color name="color_red">#D60000</color> <!-- Rojo Ibis Hotels -->
 </resources>

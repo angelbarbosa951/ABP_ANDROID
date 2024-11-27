@@ -30,6 +30,22 @@
             android:repeatMode="reverse" />
     </set>
 
+    <!-- Tres rotaciones a la derecha -->
+    <objectAnimator
+        android:propertyName="rotation"
+        android:valueFrom="0"
+        android:valueTo="1080"
+        android:duration="900"
+         android:interpolator="@android:interpolator/linear" />
+
+    <!-- Dos rotaciones a la izquierda -->
+    <objectAnimator
+        android:propertyName="rotation"
+        android:valueFrom="1080"
+        android:valueTo="360"
+    android:duration="600"
+    android:interpolator="@android:interpolator/linear" />
+
     <!-- Salida hacia arriba -->
     <set android:ordering="together">
         <objectAnimator
