@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.abp_android.R;
+import com.example.abp_android.adapters.ReservaHabitacionAdapter;
 import com.example.abp_android.adapters.ReservaManagerHabitacion;
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +29,7 @@ public class HabitacionReservaFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ListView reservesListView;
+    private ReservaHabitacionAdapter reservaAdapter;
 
     public HabitacionReservaFragment() {
         // Required empty public constructor
@@ -68,8 +70,10 @@ public class HabitacionReservaFragment extends Fragment {
 
         reservesListView = view.findViewById(R.id.reservesListView);
 
-        ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, ReservaManagerHabitacion.getInstance().getReserves());
-        reservesListView.setAdapter(adapter);
+        // Crear el adaptador personalizado
+        reservaAdapter = new ReservaHabitacionAdapter(requireContext(), ReservaManagerHabitacion.getInstance().getReserves());
+        reservesListView.setAdapter(reservaAdapter);
+
         return view;
     }
 }

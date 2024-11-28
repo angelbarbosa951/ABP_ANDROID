@@ -65,12 +65,6 @@ public class ReservasFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    private List<Actividad> reservasActividadArray = new ArrayList<>();
-    RecyclerView recyclerViewReservas;
-
-    public ReservasFragment(List<Actividad> reservas) {
-        this.reservasActividadArray = reservas;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

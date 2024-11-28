@@ -71,17 +71,14 @@ public class HabitacionAdaptar extends RecyclerView.Adapter<HabitacionAdaptar.Ha
         int mes = calendar.get(Calendar.MONTH);
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Selección de fecha de entrada
         DatePickerDialog entradaDatePicker = new DatePickerDialog(context,
                 (view, anySeleccionat, mesSeleccionat, diaSeleccionat) -> {
                     String dataEntrada = diaSeleccionat + "/" + (mesSeleccionat + 1) + "/" + anySeleccionat;
 
-                    // Selección de fecha de salida
                     DatePickerDialog sortidaDatePicker = new DatePickerDialog(context,
                             (view1, anySortida, mesSortida, diaSortida) -> {
                                 String dataSortida = diaSortida + "/" + (mesSortida + 1) + "/" + anySortida;
 
-                                // Guardar reserva
                                 if(diaSeleccionat<=diaSortida&& mesSeleccionat<=mesSortida) {
                                     Reserva_Habitacion reserva = new Reserva_Habitacion(habitacion, dataEntrada, dataSortida);
                                     ReservaManagerHabitacion.getInstance().afegirReserva(reserva);

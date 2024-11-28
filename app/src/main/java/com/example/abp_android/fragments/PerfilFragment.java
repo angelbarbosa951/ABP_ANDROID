@@ -76,7 +76,7 @@ public class PerfilFragment extends Fragment {
     private void loadUserData() {
         // Crear un usuario ficticio
         User user = new User();
-        user.setUsername("Mandeep Singh");
+        user.setUsername("angel");
         user.setRol("admin");
 
         // Mostrar los datos en las vistas
